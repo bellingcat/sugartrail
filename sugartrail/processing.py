@@ -68,8 +68,8 @@ def get_nearby_postcode(postcode_string):
 
 def get_coords_from_address(address_string):
     """Attempt retrieval of coords for input address string."""
-    address = urllib.parse.quote(address_string)
-    url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) +'?format=json'
+    params = {'q': address_string, 'format': 'json'}
+    url = 'https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode(params)
     response = requests.get(url).json()
     if response:
         return {'lat': response[0]['lat'], 'lon': response[0]['lon'], 'address': address_string}
