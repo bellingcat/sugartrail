@@ -13,13 +13,6 @@ Sugartrail is a network analysis and visualisation tool developed to make it eas
 
 You will require an API key from Companies House to get data. First you will need to create a live application to get an API key which you can do by following the [Companies House guide](https://developer.company-information.service.gov.uk/how-to-create-an-application).
 
-## No-Install Usage
-A hosted demo of the Sugartrail dashboard can be accessed <a href="https://www.sugartrail.uk" target="_blank">here</a> (might take a few seconds to load the page). This demo times out after 30 mins so may not be suitable for building large networks at present.
-
-## Demo
-
-[![img](assets/images/demo.png)](https://www.youtube.com/watch?v=evPXGTj33LQ)
-
 ## Installation
 
 1. Make sure you have Conda installed
