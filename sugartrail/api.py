@@ -70,7 +70,7 @@ def get_company(company_id):
 
 def get_address_changes(company_id):
     """Get address changes for input company."""
-    url = "https://api.company-information.service.gov.uk/company/" + str(company_id) + "/filing-history/?category=address"
+    url = "https://api.company-information.service.gov.uk/company/" + str(company_id) + "/filing-history?category=address"
     return make_request(url, company_id, 'company', 'address history')
 
 def get_correspondance_address(officer_id):
