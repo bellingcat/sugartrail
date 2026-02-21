@@ -1,9 +1,0 @@
-notebook>=7.2
-voila>=0.5
-pandas>=2.2
-ipywidgets>=8.1
-tqdm
-ratelimit
-pyvis>=0.3
-ipyleaflet>=0.19
-regex

@@ -39,9 +39,13 @@ def process_address_changes(address_changes):
     """Attempt retrieval of 'new_address' value if Companies House record is
     incomplete."""
     for i in reversed(range(1,len(address_changes['items']))):
-        if 'new_address' not in address_changes['items'][i]['description_values'].keys():
-            if 'old_address' in address_changes['items'][i-1]['description_values'].keys():
-                address_changes['items'][i]['description_values']['new_address'] = address_changes['items'][i-1]['description_values']['old_address']
+        item = address_changes['items'][i]
+        prev_item = address_changes['items'][i-1]
+        if 'description_values' not in item:
+            continue
+        if 'new_address' not in item['description_values']:
+            if 'description_values' in prev_item and 'old_address' in prev_item['description_values']:
+                item['description_values']['new_address'] = prev_item['description_values']['old_address']
     return address_changes
 
 def build_address_history(company_id):
@@ -74,7 +78,7 @@ def build_address_history(company_id):
                         entry["lat"] = ""
                         entry["lon"] = ""
                         entry["company_number"] = str(company_id)
-                        if 'old_address' in change['description_values']:
+                        if 'description_values' in change and 'old_address' in change['description_values']:
                             entry["address"] = change['description_values']['old_address']
                         else:
                             entry["address"] = ""

@@ -11,27 +11,69 @@ Sugartrail is a network analysis and visualisation tool developed to make it eas
 
 ## Requirements
 
-You will require an API key from Companies House to get data. First you will need to create a live application to get an API key which you can do by following the [Companies House guide](https://developer.company-information.service.gov.uk/how-to-create-an-application).
+You will need a Companies House API key. Create a live application to get one by following the [Companies House guide](https://developer.company-information.service.gov.uk/how-to-create-an-application).
 
 ## Installation
 
-1. Make sure you have Conda installed
+This project uses [uv](https://docs.astral.sh/uv/) for package management.
 
-2. Download the tool's repository using the command:
+1. Install uv if you don't have it:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Clone the repository:
 
 ```bash
 git clone https://github.com/ribenamaplesyrup/sugartrail.git
+cd sugartrail
 ```
 
-3. Navigate to the main directory and run:
+3. Install dependencies (uv will manage the Python version automatically):
 
 ```bash
-conda create -n candystore python=3.10
-conda activate candystore
-pip install -e .
+uv sync
 ```
 
-4. For a quickstart run `python -m voila --no-browser --debug dashboard/Sugartrail.ipynb --VoilaConfiguration.file_allowlist="['.*']"` and navigate to the url printed in your terminal where Voilà is running at (no-code). For a more detailed explanation of the tool's capabilities, run `jupyter notebook notebooks` and open either `quickstart.ipynb` or `001_getting_started.ipynb`.
+## API Key Setup
+
+Copy the example env file and add your key:
+
+```bash
+cp .env.example .env
+```
+
+Then open `.env` and replace `your_api_key_here` with your actual Companies House API key:
+
+```
+COMPANIES_HOUSE_API_KEY=your_api_key_here
+```
+
+The key is loaded automatically when you import the package. You can also set it at runtime in a notebook or script:
+
+```python
+import sugartrail
+sugartrail.api.basic_auth.username = "your_api_key_here"
+```
+
+## Running
+
+For a quickstart, launch the no-code dashboard:
+
+```bash
+uv run python -m voila --no-browser --debug dashboard/Sugartrail.ipynb --VoilaConfiguration.file_allowlist="['.*']"
+```
+
+Then navigate to the URL printed in your terminal.
+
+For notebook tutorials:
+
+```bash
+uv run jupyter notebook notebooks
+```
+
+Open either `quickstart.ipynb` or `001_getting_started.ipynb`.
 
 
 ## Examples & Tutorials

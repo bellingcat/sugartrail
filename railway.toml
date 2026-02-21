@@ -1,5 +1,0 @@
-[build]
-builder = "nixpacks"
-buildCommand = """
-    pip install -e .
-"""
