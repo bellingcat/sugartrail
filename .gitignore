@@ -58,3 +58,6 @@ notebooks/investigations
 .ipynb_checkpoints
 
 *.DS_Store
+
+# Environment / secrets
+.env

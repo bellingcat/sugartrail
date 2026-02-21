@@ -3,12 +3,17 @@ import time
 import os
 import functools
 from ratelimit import limits, sleep_and_retry
+from dotenv import load_dotenv
+
+load_dotenv()
 
 access_token = ""
-username = ""
-password = ""
 size = "5000"
-basic_auth = requests.auth.HTTPBasicAuth(username, password)
+# Reads COMPANIES_HOUSE_API_KEY from environment / .env file automatically.
+# You can also set it at runtime: sugartrail.api.basic_auth.username = "your_key"
+basic_auth = requests.auth.HTTPBasicAuth(
+    os.environ.get("COMPANIES_HOUSE_API_KEY", ""), ""
+)
 
 def auth(func):
     """Checks if user has set API Key."""

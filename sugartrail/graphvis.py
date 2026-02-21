@@ -1,5 +1,7 @@
 import networkx as nx
+from pathlib import Path
 from pyvis.network import Network
+from IPython.display import HTML
 
 def visualise_connections(network:list, viz_path):
     """Generates a pyviz force directed graph visualisation from a list of nodes
@@ -57,5 +59,9 @@ def visualise_connections(network:list, viz_path):
     }
     """
     nt.set_options(physics_options)
-    # Display
-    return nt.show(f'{viz_path}/graph.html')
+    # Save to file and display inline (avoids IFrame browser URL issues)
+    html_path = Path(viz_path) / 'graph.html'
+    html_path.parent.mkdir(parents=True, exist_ok=True)
+    html_content = nt.generate_html()
+    html_path.write_text(html_content)
+    return HTML(html_content)

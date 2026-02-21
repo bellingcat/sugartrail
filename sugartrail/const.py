@@ -1,5 +1,7 @@
-import sugartrail
+from pathlib import Path
 
-data_path = "../assets/"
-networks_path = "../assets/networks/"
-vis_path = "../assets/visualisations/"
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+data_path = str(_PROJECT_ROOT / 'assets') + '/'
+networks_path = str(_PROJECT_ROOT / 'assets' / 'networks') + '/'
+vis_path = str(_PROJECT_ROOT / 'assets' / 'visualisations') + '/'
